@@ -384,10 +384,18 @@ LRESULT CALLBACK Notepad_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 					CascadeAllWindows( hwnd ) ;
 					break;
 				case NOTEPAD_IDM_SEND_ALL: 	// Fonction envoi vers toutes les fenetres KiTTY
-					SendStrToAll( hEdit ) ;
+					char * token = strtok(hEdit, "\n")
+					while (token != NULL) {
+					    SendStrToAll( token ) ;
+					    token = strtok(NULL, "\n");
+					}
 					break;
 				case NOTEPAD_IDM_SEND:  	// Fonction envoi vers la fenetre KiTTY parent
-					SendStrToParent( hEdit ) ;
+					char * token = strtok(hEdit, "\n")
+					while (token != NULL) {
+					    SendStrToParent( token ) ;
+					    token = strtok(NULL, "\n");
+					}
 					break;
 				case NOTEPAD_IDM_CRLF:
 					if( (Semic_flag == 0)&&(Slash_flag == 0) ) {
